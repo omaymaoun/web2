@@ -57,12 +57,12 @@ class AuthorController extends AbstractController
         ]);
     }
 
-
     #[Route('/author/{name}', name: 'app_details')]
     public function authorDetails(int $id): Response
 {
   
 }
+   
 }
 
    
@@ -71,7 +71,6 @@ class AuthorController extends AbstractController
     
        
     
-
 
 
 

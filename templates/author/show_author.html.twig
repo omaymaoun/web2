@@ -1,15 +1,13 @@
+{# templates/author/showAuthor.html.twig #}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Détails de l'Auteur</title>
+    <title>{{ author.name }} Details</title>
 </head>
 <body>
     <h1>{{ author.name }}</h1>
-   <h1> <img src="{{ asset(author.picture) }}" alt="{{ author.name }}"></h1>
+    <img src="{{ asset(author.picture) }}" alt="{{ author.name }}">
     <p>Email: {{ author.email }}</p>
-    <p>Nombre de livres: {{ author.nb_books }}</p>
-    <a href="{{ path('app_authors') }}">Retour à la liste des auteurs</a>
-    
-
+    <p>Number of books: {{ author.nb_books }}</p>
 </body>
 </html>
