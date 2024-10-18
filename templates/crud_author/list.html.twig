@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,11 +43,6 @@
 
         tr:hover {
             background-color: #f1f1f1;
-        }
-
-        img {
-            width: 100px; /* Image size */
-            border-radius: 8px; /* Rounded corners */
         }
 
         /* Responsive design */
@@ -93,45 +91,40 @@
     </style>
 </head>
 <body>
-    <h1>List of Authors</h1>
-    <!-- Display the number of authors -->
-    <p>Number of authors: <strong>{{ authors|length }}</strong></p>
-    <!-- Calculate and display the total number of books -->
-    {% set totalBooks = 0 %}
-    {% for author in authors %}
-        {% set totalBooks = totalBooks + author.nbrBooks %}
+
+    <h1>Liste des Auteurs</h1>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">{{ message }}</div>
     {% endfor %}
-    <p>Total number of books: <strong>{{ totalBooks }}</strong></p>
 
     <table>
         <thead>
             <tr>
-                <!-- New column for details -->
-                <th>Details</th>
-                <th>Picture</th>
-                <th>Name</th>
+                <th>ID</th>
+                <th>Username</th>
                 <th>Email</th>
-                <th>Number of Books</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
             {% for author in authors %}
                 <tr>
-                    <!-- Details link -->
-                  <td><a href="{{ path('author_details', { id: author.id }) }}">Voir les détails</a></td>
-
-                    <td data-label="Picture"><img src="{{ asset(author.picture) }}" alt="{{ author.name }}"></td>
-                    <td data-label="Name">{{ author.name|upper }}</td>
+                    <td data-label="ID">{{ author.id|upper }}</td>
+                    <td data-label="Username">{{ author.username|upper }}</td>
                     <td data-label="Email">{{ author.email|upper }}</td>
-                    <td data-label="Number of Books">{{ author.nbrBooks|upper }}</td>
+                    <td>
+                        <a href="{{ path('author_edit', {'id': author.id }) }}" class="btn btn-warning" onclick="return confirm('Voulez-vous modifier cet auteur?');">Edit</a>
+                        <a href="{{ path('author_delete', {'id': author.id }) }}" class="btn btn-danger" onclick="return confirm('Voulez-vous supprimer cet auteur?');">Delete</a>
+                    </td>
+
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="5" style="text-align: center;">No authors found.</td>
+                    <td colspan="4" style="text-align: center;">Aucun auteur trouvé.</td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 </body>
 </html>
-

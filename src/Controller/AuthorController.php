@@ -13,11 +13,9 @@ class AuthorController extends AbstractController
     #[Route('/author', name: 'app_author')]
     public function index(): Response
     {
-        return $this->render('author/index.html.twig', [
-            'controller_name' => 'AuthorController',
-        ]);
+        return $this->render('author/index.html.twig', ['controller_name' => 'AuthorController']);
     }
-    #[Route("/author/{name}",name:"app_showAuthor",methods:["GET"],defaults:["name"=>"omayma_oun"])]
+    #[Route("/author/{name}",name:"app_showAuthor",methods:["GET"],defaults:["name"=>"omayma_oun",])]
    public function showAuthor($name){
        return $this->render('author/show.html.twig',
        array(
@@ -57,11 +55,27 @@ class AuthorController extends AbstractController
         ]);
     }
 
-    #[Route('/author/{name}', name: 'app_details')]
-    public function authorDetails(int $id): Response
-{
-  
-}
+    #[Route('/author/details/{id}', name: 'author_details')]
+    public function authorDetails($id): Response
+    {
+        $authors = [
+            1 => ['username' => 'Victor Hugo', 'picture' => '/images/vh.jpeg', 'email' => 'victor.hugo@gmail.com', 'nb_books' => 100],
+            2 => ['username' => 'William Shakespeare', 'picture' => '/images/ws.jpeg', 'email' => 'william.shakespeare@gmail.com', 'nb_books' => 200],
+            3 => ['username' => 'Taha Hussein', 'picture' => '/images/th.jpeg', 'email' => 'taha.hussein@gmail.com', 'nb_books' => 300],
+        ];
+    
+        if (!isset($authors[$id])) {
+            throw $this->createNotFoundException('Auteur non trouvé.');
+        }
+    
+        return $this->render('author/show_author.html.twig', [
+            'author' => $authors[$id]
+        ]);
+    }
+
+    
+    
+    
    
 }
 

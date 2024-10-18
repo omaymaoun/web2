@@ -1,0 +1,46 @@
+{# templates/book/modifier_book.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un Livre{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Modifier le Livre</h1>
+
+        {# Si vous souhaitez afficher des messages flash de succès/erreur après l'enregistrement #}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {# Début du formulaire #}
+        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+        
+        <div class="mb-3">
+            {{ form_label(form.title, 'Titre du Livre', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.title) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.author, 'Auteur', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.author, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.author) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.category, 'Catégorie', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.category) }}
+        </div>
+
+        {# Ajout d'un bouton d'enregistrement bien visible #}
+        <button type="submit" class="btn btn-primary mt-4">Enregistrer les modifications</button>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+

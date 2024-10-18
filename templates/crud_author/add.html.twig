@@ -1,0 +1,53 @@
+{# templates/book/add.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un Livre{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un Livre</h1>
+
+    {{ form_start(form, {'attr': {'class': 'form-add-book'}}) }} {# Démarre le formulaire #}
+        {{ form_widget(form) }} {# Affiche les champs du formulaire #}
+        <button class="btn-submit">Ajouter</button>
+    {{ form_end(form) }} {# Termine le formulaire # %}
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn-submit {
+            background-color: #28a745; /* couleur verte */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .btn-submit:hover {
+            background-color: #218838; /* couleur verte plus foncée au survol */
+        }
+    </style>
+{% endblock %}

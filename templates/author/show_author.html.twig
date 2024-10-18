@@ -2,11 +2,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ author.name }} Details</title>
+    <title>{{ author.username }} Details</title>
 </head>
 <body>
-    <h1>{{ author.name }}</h1>
-    <img src="{{ asset(author.picture) }}" alt="{{ author.name }}">
+    <h1>{{ author.username }}</h1>
+    <img src="{{ asset(author.picture) }}" alt="{{ author.username }}">
     <p>Email: {{ author.email }}</p>
     <p>Number of books: {{ author.nb_books }}</p>
 </body>

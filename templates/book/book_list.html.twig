@@ -1,0 +1,42 @@
+{# templates/book/book_list.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Livres{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+    {# Formulaire de recherche #}
+        <form method="get" action="{{ path('book_list') }}" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Rechercher un livre..." value="{{ app.request.get('search') }}">
+                <button class="btn btn-primary" type="submit">Rechercher</button>
+            </div>
+        </form>
+        <h1>Liste des Livres</h1>   
+
+        <h2>Résultats</h2>
+        {% if books is not empty %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Auteur</th>
+                        <th>Catégorie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                        <tr>
+                            <td>{{ book.title }}</td>
+                            <td>{{ book.author.username }}</td>
+                            <td>{{ book.category }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Aucun livre trouvé.</p>
+        {% endif %}
+    </div>
+{% endblock %}
